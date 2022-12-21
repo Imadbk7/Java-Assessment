@@ -1,0 +1,56 @@
+scalar Date
+
+type Query {
+    books: [Book]
+    authors: [Author]
+    findBookById(id:ID!): Book
+    findAuthorById(id:ID!): Author
+}
+
+type Author{
+    id: ID!
+    firstName: String
+    lastName: String
+    dateOfBirth: Date
+    #    dateOfBirth(dateFormat : String = "dd, MMM, yyyy') : String
+    books: [Book]
+}
+
+enum Genres {
+    FICTION
+    NONFICTION
+}
+
+
+type Book{
+    id: ID!
+    title: String
+    genre: Genres
+    authors: [Author]
+}
+
+input BookInput{
+    title: String
+    genre: Genres
+    authors: [AuthorInput]
+}
+
+input AuthorInput {
+    id: ID
+    firstName: String
+    lastName: String
+    dateOfBirth: Date
+    #    dateOfBirth(dateFormat : String = "dd, MMM, yyyy') : String
+    books: [BookInput]
+}
+
+
+type Mutation {
+    addAuthor(author: AuthorInput): Author!
+    updateAuthor(author: AuthorInput!): Book!
+    deleteAuthor(id:ID!): Author
+    addBook(book: BookInput): Book!
+    updateBook(book: BookInput): Book!
+    deleteBook(id: ID!): Book!
+}
+
