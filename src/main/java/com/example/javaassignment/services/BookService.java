@@ -5,6 +5,7 @@ import com.example.javaassignment.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,10 @@ public class BookService {
     }
 
     public Book addBook(Book book) {
+        ArrayList<Book> bookArrayList = new ArrayList<>();
+        bookArrayList.add(book);
+        book.getAuthors().stream().map(data -> data).filter(data -> data.getBooks() != null).forEach(data -> data.getBooks().add(book));
+        book.getAuthors().stream().map(data -> data).filter(data -> data.getBooks() == null).forEach(data -> data.setBooks(bookArrayList));
         return this.bookRepository.save(book);
     }
 

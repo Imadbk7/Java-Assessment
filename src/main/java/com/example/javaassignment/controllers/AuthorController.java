@@ -39,7 +39,6 @@ public class AuthorController {
     }
 
     @MutationMapping
-//    public Author updateAuthor(@Argument Long id, @Argument String firstName, @Argument String lastName, @Argument LocalDate date) {
     public Author updateAuthor(@Argument Author author) {
         return this.authorService.updateAuthor(author);
     }

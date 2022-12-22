@@ -30,6 +30,7 @@ type Book{
 }
 
 input BookInput{
+    id: ID
     title: String
     genre: Genres
     authors: [AuthorInput]

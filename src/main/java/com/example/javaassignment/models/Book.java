@@ -23,9 +23,7 @@ public class Book {
 
     @Column(name = "genre")
     private Genres genre;
-
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(joinColumns = @JoinColumn(name = "bookId"),
-    inverseJoinColumns = @JoinColumn(name = "authorId"))
+    
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "books")
     private List<Author> authors;
 }
