@@ -21,7 +21,6 @@ enum Genres {
     NONFICTION
 }
 
-
 type Book{
     id: ID!
     title: String
@@ -45,10 +44,9 @@ input AuthorInput {
     books: [BookInput]
 }
 
-
 type Mutation {
     addAuthor(author: AuthorInput): Author!
-    updateAuthor(author: AuthorInput!): Book!
+    updateAuthor(author: AuthorInput!): Author!
     deleteAuthor(id:ID!): Author
     addBook(book: BookInput): Book!
     updateBook(book: BookInput): Book!
