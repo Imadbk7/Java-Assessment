@@ -15,7 +15,7 @@ public class Book {
 
     @Id
     @GeneratedValue
-    @Column(name = "bookId", nullable = false)
+    @Column (name = "bookId", nullable = false)
     private Long id;
 
     @Column(name = "title")
@@ -23,7 +23,8 @@ public class Book {
 
     @Column(name = "genre")
     private Genres genre;
-    
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "books")
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
+    @JoinTable(joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "bookId")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id", referencedColumnName = "authorId")})
     private List<Author> authors;
 }

@@ -46,7 +46,6 @@ input AuthorInput {
 
 type Mutation {
     addAuthor(author: AuthorInput): Author!
-    updateAuthor(author: AuthorInput!): Author!
     deleteAuthor(id:ID!): Author
     addBook(book: BookInput): Book!
     updateBook(book: BookInput): Book!

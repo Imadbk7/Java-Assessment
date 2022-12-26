@@ -5,6 +5,7 @@ import com.example.javaassignment.repositories.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ public class AuthorService {
     private final AuthorRepository authorRepository;
 
     public Author addAuthor(Author author) {
+        persistAuthorBook(author);
         return this.authorRepository.save(author);
     }
 
@@ -33,9 +35,12 @@ public class AuthorService {
         return author;
     }
 
-    public Author updateAuthor(Author author) {
-       this.findAuthorById(author.getId()).orElseThrow(() -> new IllegalStateException("No author with this id found"));
-        return this.authorRepository.save(author);
+    public void persistAuthorBook(Author author){
+        if(author.getBooks() != null) {
+            ArrayList<Author> authorArrayListh = new ArrayList<>();
+            authorArrayListh.add(author);
+            author.getBooks().stream().filter(book -> book.getAuthors() != null).forEach(book -> book.getAuthors().add(author));
+            author.getBooks().stream().filter(book -> book.getAuthors() == null).forEach(book -> book.setAuthors(authorArrayListh));
+        }
     }
-
 }

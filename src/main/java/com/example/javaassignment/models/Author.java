@@ -23,8 +23,6 @@ public class Author {
     @Column(name = "date")
     private LocalDate dateOfBirth;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(joinColumns = {@JoinColumn(name = "author_id", referencedColumnName = "authorId")}, inverseJoinColumns = {
-            @JoinColumn(name = "book_id", referencedColumnName = "bookId")})
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "authors")
     private List<Book> books;
 }
