@@ -12,7 +12,6 @@ type Author{
     firstName: String
     lastName: String
     dateOfBirth: Date
-    #    dateOfBirth(dateFormat : String = "dd, MMM, yyyy') : String
     books: [Book]
 }
 
@@ -40,9 +39,9 @@ input AuthorInput {
     firstName: String
     lastName: String
     dateOfBirth: Date
-    #    dateOfBirth(dateFormat : String = "dd, MMM, yyyy') : String
-#    books: [BookInput]
 }
+
+
 
 type Mutation {
     addAuthor(author: AuthorInput): Author!
@@ -51,4 +50,3 @@ type Mutation {
     updateBook(book: BookInput): Book!
     deleteBook(id: ID!): Book!
 }
-
