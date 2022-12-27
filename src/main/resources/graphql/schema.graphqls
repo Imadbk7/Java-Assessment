@@ -41,7 +41,7 @@ input AuthorInput {
     lastName: String
     dateOfBirth: Date
     #    dateOfBirth(dateFormat : String = "dd, MMM, yyyy') : String
-    books: [BookInput]
+#    books: [BookInput]
 }
 
 type Mutation {

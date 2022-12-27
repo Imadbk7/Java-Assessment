@@ -16,7 +16,6 @@ public class AuthorService {
     private final AuthorRepository authorRepository;
 
     public Author addAuthor(Author author) {
-        persistAuthorBook(author);
         return this.authorRepository.save(author);
     }
 
@@ -33,14 +32,5 @@ public class AuthorService {
         author.orElseThrow(() -> new IllegalStateException("no author with this id found"));
         author.ifPresent(this.authorRepository::delete);
         return author;
-    }
-
-    public void persistAuthorBook(Author author){
-        if(author.getBooks() != null) {
-            ArrayList<Author> authorArrayListh = new ArrayList<>();
-            authorArrayListh.add(author);
-            author.getBooks().stream().filter(book -> book.getAuthors() != null).forEach(book -> book.getAuthors().add(author));
-            author.getBooks().stream().filter(book -> book.getAuthors() == null).forEach(book -> book.setAuthors(authorArrayListh));
-        }
     }
 }
