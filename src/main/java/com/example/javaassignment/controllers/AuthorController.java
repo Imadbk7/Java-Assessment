@@ -32,7 +32,7 @@ public class AuthorController {
     }
 
     @QueryMapping
-    public Optional<Author> findAuthorById(Long id) {
+    public Optional<Author> findAuthorById(@Argument Long id) {
         return this.authorService.findAuthorById(id);
     }
 }
